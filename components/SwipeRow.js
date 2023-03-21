@@ -276,9 +276,9 @@ class SwipeRow extends Component {
 
     handlePanResponderMove(e, gestureState) {
         /* If the view is force closing, then ignore Moves. Return */
-        if (this.isForceClosing) {
-            return;
-        }
+        // if (this.isForceClosing) {
+        //     return;
+        // }
 
         /* Else, do normal job */
         const { dx, dy } = gestureState;
@@ -533,7 +533,7 @@ class SwipeRow extends Component {
                 direction === 'left' &&
                 this.props.onForceCloseToLeftEnd
             ) {
-                this.props.onForceCloseToLeftEnd();
+                // this.props.onForceCloseToLeftEnd();
             }
         });
     }
