@@ -305,6 +305,8 @@ class SwipeRow extends Component {
                     this.props.setScrollEnabled(false);
             }
 
+            let newDX = this.swipeInitialX + dx;
+            
             if (this.swipeInitialX === null) {
                 // set tranlateX value when user started swiping
                 this.swipeInitialX = this.currentTranslateX;
@@ -314,7 +316,9 @@ class SwipeRow extends Component {
                 this.props.swipeGestureBegan && this.props.swipeGestureBegan();
             }
 
-            let newDX = this.swipeInitialX + dx;
+    
+
+           
             if (this.props.disableLeftSwipe && newDX < 0) {
                 newDX = 0;
             }
@@ -332,7 +336,14 @@ class SwipeRow extends Component {
                 newDX = this.props.stopRightSwipe;
             }
 
-            this._translateX.setValue(newDX);
+            if(newDX < 0 && newDX > this.props.rightOpenValue){
+                this._translateX.setValue(newDX);
+            }else if(newDX > 0 && newDX > this.props.rightOpenValue){
+                this._translateX.setValue(newDX);
+            }
+           
+
+            // this._translateX.setValue(newDX);
         }
     }
 
@@ -446,6 +457,7 @@ class SwipeRow extends Component {
         let toValue = 0;
         let actionSide;
         const rightActionValue = this.props.rightActionValue || 0;
+
         if (this.swipeInitialX > this.currentTranslateX) {
             if (
                 this.currentTranslateX - projectedExtraPixels <
