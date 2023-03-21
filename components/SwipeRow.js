@@ -540,12 +540,9 @@ class SwipeRow extends Component {
     }
 
     manuallySwipeRow(toValue, onAnimationEnd) {
-        Animated.spring(this._translateX, {
+        Animated.timing(this._translateX, {
             toValue,
-            friction: this.props.friction,
-            tension: this.props.tension,
-            restSpeedThreshold: this.props.restSpeedThreshold,
-            restDisplacementThreshold: this.props.restDisplacementThreshold,
+            duration: 500,
             useNativeDriver: this.props.useNativeDriver,
         }).start(() => {
             this.ensureScrollEnabled();
